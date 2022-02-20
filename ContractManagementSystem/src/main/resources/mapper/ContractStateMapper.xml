@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.contractmanagementsystem.mapper.ContractStateMapper">
+
+    <select id="getFinal" resultType="ContractState">
+        select * from contractstate where conName = #{conName} and `type` = 2
+    </select>
+
+    <select id="getApprove" resultType="ContractState">
+        select * from contractstate where conName = #{conName} and `type` = 3
+    </select>
+
+    <select id="getFinish" resultType="ContractState">
+        select * from contractstate where conName = #{conName} and `type` = 4
+    </select>
+
+    <select id="getSign" resultType="ContractState">
+        select * from contractstate where conName = #{conName} and `type` = 1
+    </select>
+
+    <insert id="addContractState">
+        insert into contractstate (`conName`, `type`, `time`)
+        values (#{conName},#{type},#{time})
+    </insert>
+
+    <update id="updateContractState">
+        update contractstate
+        set type = #{type},    `time` = #{time}
+        where conName = #{conName}
+    </update>
+
+    <select id="queryContractStateByConName" parameterType="String" resultType="ContractState">
+        select * from contractstate where conName = #{conName}
+    </select>
+
+    <select id="getAllContractState" resultType="ContractState">
+        select * from contractstate
+    </select>
+
+    <delete id="deleteContractState">
+        delete from contractstate where conName = #{conName}
+    </delete>
+
+</mapper>

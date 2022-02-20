@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.contractmanagementsystem.mapper.ContractProcessMapper">
+
+
+    <select id="getApprove" resultType="ContractProcess">
+        select * from contractprocess where userName = #{userName} and type = 2 and state = 0
+    </select>
+
+    <select id="getFinish" resultType="ContractProcess">
+        select * from contractprocess where userName = #{userName} and type = 3 and state = 0
+    </select>
+
+    <select id="getSign" resultType="ContractProcess">
+        select * from contractprocess where userName = #{userName} and type = 1 and state = 0
+    </select>
+
+    <select id="getUnChange" resultType="ContractProcess">
+        select * from contractprocess where conNum = #{conNum} and type = #{type} and state = #{state}
+    </select>
+
+    <select id="getAllContractProcess" resultType="ContractProcess">
+        select * from contractprocess
+    </select>
+
+    <select id="queryContractProcess" parameterType="String" resultType="ContractProcess">
+        select * from contractprocess where name = #{name}
+    </select>
+
+    <insert id="addContractProcess">
+        insert into contractprocess (`conNum`,`type`,`state`,`userName`,`time`)
+        values (#{conNum},#{type},#{state},#{userName},#{time})
+    </insert>
+
+    <update id="updateContractProcess">
+        update contractprocess set
+                                   `state` = #{state},
+                                   `time` = #{time}
+        where conNum = #{conNum} and userName = #{userName} and `type` = #{type}
+    </update>
+
+    <delete id="deleteContractProcess">
+        delete from contractprocess where conNum = #{conNum} and userName = #{userName}
+    </delete>
+
+
+
+</mapper>

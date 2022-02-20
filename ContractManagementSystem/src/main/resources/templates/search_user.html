@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>用户信息管理</title>
+    <script th:src="@{/js/jquery-3.3.1.js}" src="/js/jquery-3.3.1.js"></script>
+    <script th:src="@{/js/jquery.min.js}" src="/js/jquery.min.js"></script>
+    <!--    <script th:src="@{/js/jquery-3.2.1.min.js}"></script>-->
+    <script th:src="@{/js/jquery.slimscroll.min.js}" src="/js/jquery.slimscroll.min.js"></script>
+    <!--    <script src="../static/js/jquery.slimscroll.min.js"></script>-->
+    <script th:src="@{/js/left-side-menu.js}" src="/js/left-side-menu.js"></script>
+    <!--    <script src="../static/js/left-side-menu.js"></script>-->
+    <!--    <link rel="stylesheet" th:href="@{/css/left-side-menu.css}" href="../css/left-side-menu.css">-->
+    <link rel="stylesheet" th:href="@{/css/left-side-menu.css}">
+    <!--    <link rel="stylesheet" href="../font/iconfont.css">-->
+    <!--    <link rel="stylesheet" th:href="@{/css/search_user.css}" href="../css/search_user.css">-->
+    <link rel="stylesheet" th:href="@{/css/search_user.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/font/iconfont.css}">
+    <style type="text/css">
+        html {
+            font-family: sans-serif;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        td,th {
+            padding: 0;
+        }
+        .pure-table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            empty-cells: show;
+            border: 1px solid #cbcbcb;
+        }
+
+        .pure-table caption {
+            color: #000;
+            font: italic 85%/1 arial,sans-serif;
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        .pure-table td,.pure-table th {
+            border-left: 1px solid #cbcbcb;
+            border-width: 0 0 0 1px;
+            font-size: inherit;
+            margin: 0;
+            overflow: visible;
+            padding: .5em 1em;
+        }
+
+        .pure-table thead {
+            background-color: #e0e0e0;
+            color: #000;
+            text-align: left;
+            vertical-align: bottom;
+        }
+
+        .pure-table td {
+            background-color: #f2f2f2;
+        }
+
+        .pure-table-odd td {
+            background-color: #f2f2f2;
+        }
+    </style>
+
+</head>
+<body>
+<div class ="top"  style="width: 100%;height: 80px;background-color: #4a4a4b">
+    <span class="tt">合同管理系统</span>
+    <span class="tt2">用户信息管理</span>
+    <span class="user_name">用户名</span>
+    <input class="back" type="button" value="退出" style="width: 50px; height: 50px; border-radius: 50%;border: none">
+</div>
+<div class="left-side-menu" style="top:80px ;position: fixed">
+    <div class="lsm-expand-btn">
+        <div class="lsm-mini-btn">
+            <label>
+                <input type="checkbox" checked="checked">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="30" />
+                    <path class="line--1" d="M0 40h62c18 0 18-20-17 5L31 55" />
+                    <path class="line--2" d="M0 50h80" />
+                    <path class="line--3" d="M0 60h62c18 0 18 20-17-5L31 45" />
+                </svg>
+            </label>
+        </div>
+    </div>
+    <div class="lsm-container">
+        <div class="lsm-scroll" >
+            <div class="lsm-sidebar">
+                <ul>
+                    <li class="lsm-sidebar-item">
+                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_2"></i><span>主页面</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <ul>
+                            <li><a th:href="@{/index}"><span>首页</span></a></li>
+                            <li><a th:href="@{/login}"><span>退出</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="lsm-sidebar-item">
+                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_3"></i><span>合同管理</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <ul>
+                            <li><a th:href="@{/draft}"><span>起草合同</span></a></li>
+                            <li><a th:href="@{/sign}"><span>会签合同</span></a></li>
+                            <li><a th:href="@{/finalize}"><span>定稿合同</span></a></li>
+                            <li><a th:href="@{/approve}"><span>审批合同</span></a></li>
+                            <li><a th:href="@{/finish}"><span>签订合同</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="lsm-sidebar-item">
+                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_3"></i><span>查询统计</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <ul>
+                            <li><a th:href="@{/search_contract}"><span>合同信息查询</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="lsm-sidebar-item">
+                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_3"></i><span>基础数据管理</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <ul>
+                            <li><a th:href="@{/addCustomer}"><span>新增客户</span></a></li>
+                            <li><a th:href="@{/sear_account}"><span>查询客户</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="lsm-sidebar-item">
+                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_1"></i><span>系统管理</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <ul>
+                            <li><a th:href="@{/authorize/getAll}"><span>分配合同</span></a></li>
+                            <li><a th:href="@{/addUser}"><span>增加用户</span></a></li>
+                            <li><a th:href="@{/search}"><span>用户管理</span></a></li>
+                            <li><a th:href="@{/addRole}"><span>角色管理</span></a></li>
+                            <li><a th:href="@{/search_log}"><span>日志管理</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="right-main">
+    <div class="search-box">
+        <input class="search-txt" type="text" placeholder="请输入查询信息">
+        <a type="button" class="search-btn">
+            <svg class="icon" viewBox="0 0 1024 1024" width="30px"><path d="M424.024 766.098c-91.619 0-177.754-35.679-242.538-100.464-133.735-133.737-133.735-351.344 0-485.078 64.784-64.784 150.919-100.462 242.538-100.462s177.754 35.677 242.539 100.462c133.733 133.735 133.735 351.34 0 485.078-64.785 64.783-150.922 100.464-242.539 100.464zM424.024 196.085c-60.637 0-117.643 23.613-160.523 66.489-88.512 88.51-88.51 232.53 0 321.040 42.876 42.876 99.885 66.491 160.523 66.491s117.643-23.614 160.523-66.491c88.51-88.51 88.51-232.53 0-321.040-42.876-42.876-99.885-66.489-160.523-66.489z" fill="#e94118" p-id="1176"></path><path d="M886.838 943.904c-14.842 0-29.684-5.663-41.010-16.986l-261.286-261.285c-22.647-22.649-22.647-59.369 0-82.018 22.647-22.647 59.37-22.647 82.018 0l261.286 261.286c22.647 22.649 22.647 59.369 0 82.018-11.325 11.322-26.167 16.985-41.010 16.985z" fill="#e94118" p-id="1177"></path></svg>
+        </a>
+        <!--    <button class = "bb">点击按钮</button>-->
+    </div>
+<!--    <div>-->
+<!--        <input class="new_user" type="button" value="新增" style="width: 50px; height: 50px; border-radius: 50%;border: none">-->
+<!--    </div>-->
+
+            <table class="pure-table">
+                <thead class="text-center" style="background-color: #20C997;color: white;">
+            <tr>
+                <th width="16%" align="center">用户编号</th>
+                <th width="16%" align="center">用户名称</th>
+                <th align="center">用户角色</th>
+                <th align="center">授权</th>
+                <th align="center">删除</th>
+            </tr>
+            </thead>
+
+                <tbody id="idData">
+                </tbody>
+            </table>
+        <div style="border-width: 1px; border-color: #008000; width:40%;" class="info"><!--legend(中文意思为传说 铭文）指在 fieldSet 对象绘制的方框内插入一个标题。-->
+<!--            <legend>配置权限</legend>-->
+            <!-- form是指表单，也可以理解成一块区域  action属性指将表单提交的地址 method属性指提交方式 现在流行的为post以及get（post更为保密）-->
+            <form action="#" method="post"><!--table指创建一个表单 cellpadding指单元格内文字与边框的距离 align指使排成一条线 center指按照中线对其-->
+                <table  cellpadding="2" align="center">
+                    <tr><!--tr指定义表中的行，必须在table中使用-->
+                        <td align="right">客户名称：</td><!--td指表单中的一个单元格，必须在table中使用-->
+                        <td>
+                            <!--1.文本输入框 text(中文为文本)-->
+                            <p id="selectUser">用户名</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td  align="right">用户权限：</td>
+                        <!--3.单选输入框控件 因为无法输入value，所以提前设定好 value指input 元素的值。-->
+                        <!--radio(中文为无线电，接受信息)指单选输入框控件  gender（中文意为性别） male（中文为男性）female（中文意为女性）-->
+                        <td>
+<!--                            <label><input type="radio" name="gender" value="male" id="opareter"/>操作员</label>-->
+<!--                            <label><input type="radio" name="gender" value="female" id="dba"/>管理员</label>-->
+<!--                            <label><input type="radio" name="gender" value="male" id="dinggao"/>定稿</label>-->
+<!--                            <label><input type="radio" name="gender" value="female" id="shenpi"/>审批</label>-->
+<!--                            <label><input type="radio" name="gender" value="male" id="qianding"/>签订</label>-->
+<!--                            <label><input type="radio" name="gender" value="female" id="wancheng"/>完成</label>-->
+                            <select  class="role" id="role">
+                                <option th:each="user1:${roles}" th:text="${user1.getName()}" th:value="${user1.getName()}"></option>
+                            </select>
+<!--                            <select class="role" id="role">-->
+<!--                            </select>-->
+                        </td>
+                    </tr>
+                    <br>
+                    <tr>
+                        <td colspan="2" align="center">
+                            <!--6.提交按钮控件  submit中文为提交-->
+<!--                            <input type="submit" value="增加"/>-->
+                            <input type="button" value="提交" id="btnSubmit" onclick="getInfoSettings()"/>
+                            <!--7.重置按钮控件  reset中文为重置-->
+                            <input type="reset" value="重置" id="btnReset"/>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    <div class="page" align="center" >
+        <div id="barcon" name="barcon" style="color: black ;font-size: large;font-weight: bold;"></div>
+    </div>
+</div>
+</body>
+
+<script>
+
+    // 在配置权限中点击提交时获取用户权限的两个rediobutton，并获取checked的button中的text，并将其反映在用户信息表中
+    var num;
+    var sq;
+    function getInfoSettings()
+    {
+        //获取select中的值
+        // var selectRole = document.getElementById("role");
+        // var index = selectRole.selectedIndex;
+        // var selectText = selectRole[index].text;
+        var selectText = document.getElementById("role").value;
+        var inputObj = document.getElementById("selectUser");
+        var inputText = inputObj.innerHTML;
+        // 单独获取对象
+        // var oparetedRadio = document.getElementById("opareter");
+        // var dbaRadio = document.getElementById("dba");
+        // var dinggaoRadio = document.getElementById("dinggao");
+        // var shenpiRadio = document.getElementById("shenpi");
+        // var qiandingRadio = document.getElementById("qianding");
+        // var wanchengRadio = document.getElementById("wancheng");
+
+        // var strPermission;
+        // if(oparetedRadio.checked)
+        // {
+        //     strPermission = "操作者";
+        // }else if(dbaRadio.checked)
+        // {
+        //     strPermission = "管理者";
+        // }
+        // if(shenpiRadio.checked)
+        // {
+        //     strPermission = "审计";
+        // }else if(qiandingRadio.checked)
+        // {
+        //     strPermission = "签订";
+        // }
+        // if(wanchengRadio.checked)
+        // {
+        //     strPermission = "完成";
+        // }else if(dinggaoRadio.checked)
+        // {
+        //     strPermission = "定稿";
+        // }
+        // 获得修改后的数据，将修改后的数据传给后端,后端存入数据库之后，再将数据传输给前端，前端更新表单
+        $.ajax({
+            url:"/sear_userAjax",
+            type:"post",
+            dataType:"json",
+            data:{
+                "USERNAME":inputText,
+                "PERMISSION":selectText
+            },
+            success:function(data)
+            {
+                location.reload();
+            },
+            error:function()
+            {
+                alert("数据传输失败.............");
+            }
+        })
+    }
+    // 点击授权之后将用户名显示在带授权窗口中
+    function selectUser(val){
+        var value = $(val).parent().parent().find("td");
+        var username = document.getElementById("selectUser");
+        username.innerText = value.eq(1).text();
+        alert(username.innerText);
+    }
+    var back = document.getElementsByClassName("back")[0]
+    back.onclick= function (){
+        window.location.href = "b.html";
+    }
+
+
+
+
+    datas = [];
+    Initname();
+    InitTable();
+    function InitTable()
+    {
+
+    }
+    function getJsonObjLength(jsonObj) {
+        var Length = 0;
+        for (var item in jsonObj)
+        { Length++; }
+        return Length;
+    }
+    function Initname()
+    {
+        $.ajax({
+            url:"/s_username",
+            type:"post",
+            dataType:"json",
+            data:{
+            },
+            success:function(data)
+            {
+                // 获取用来创建表的数据
+                // var json= JSON.stringify(data);
+                // var jsonText = JSON.parse(json);
+                // alert(jsonText.user_name + "+" + jsonText.user_permission + "+" + jsonText.user_nameRight + "+" + jsonText.user_permissionRight);
+                //
+                // var partUser_name = jsonText.user_name.split(",");
+                // var partUser_nameRight = jsonText.user_nameRight.split(",");
+                // var partUser_permissionRight = jsonText.user_permissionRight.split(",");
+                // var partUser_permission = jsonText.user_permission.split(",");
+                // 初始化select
+                // alert("开始初始化下拉框")
+                // for(n = 0; n < partUser_permission.length;n++)
+                // {
+                //     $("#role").append(partUser_permission[n]);
+                //     alert(partUser_permission[n]);
+                // }
+                // alert("下拉框结束")
+                // 初始化datas
+                // alert(partUser_name.length);
+                // for( k = 0;k < data.length;k++)
+                // {
+                //     for(j = 0;j < partUser_nameRight.length;j++)
+                //     {
+                //         if(partUser_name[k].indexOf(partUser_nameRight[j]) != -1)
+                //         {
+                //             datas[k] = {
+                //                 num: k + 1,
+                //                 name: partUser_nameRight[j],
+                //                 role: partUser_permissionRight[j],
+                //                 sq:"授权"
+                //             }
+                //         }else if(partUser_name[k].indexOf(partUser_nameRight[j]) == -1)
+                //         {
+                //             datas[k] = {
+                //                 num: k + 1,
+                //                 name: partUser_name[k],
+                //                 role: "待授权",
+                //                 sq: "授权"
+                //             }
+                //         }
+                //     }
+                //     // alert(datas[k].name);
+                // }
+                console.log(data)
+                for (let ls=0; ls <getJsonObjLength(data); ls ++){
+                    var key = "key" + String(ls);
+                    datas[ls] = {
+                        num: data[key]["uid"],
+                        name: data[key]["name"],
+                        role: data[key]["role"],
+                        sq:"授权"
+                    }
+                }
+                // datas[k] = {
+                //     num: k + 1,
+                //     name: partUser_nameRight[j],
+                //     role: partUser_permissionRight[j],
+                //     sq:"授权"
+                // }
+                // 2,往tbody里面创建行，有几个人（通过数组的长度）我们就创建几行,建表时自增number
+                var tbody=document.querySelector("tbody");
+                for(var i=0;i<datas.length;i++)  //外面的for循环 是 行tr
+                {
+                    var dataName;
+                    var tr=document.createElement("tr");
+                    tbody.appendChild(tr);
+                    //3,往tr每一行里面创建单元格（跟数据有关系的3个单元格），td单元格的数量取决于每个对象的属性个数 for循环遍历对象 datas[i]
+                    // for(var k in datas[i])   //里面的for循环是 列
+                    // {
+                    //     var td=document.createElement("td");  //创建单元格
+                    //     tr.appendChild(td);
+                    //     td.innerHTML=datas[i][k];  //把对象里面的属性值 datas[i][k]给td
+                    // }
+                    var td1 = document.createElement("td");
+                    tr.appendChild(td1);
+                    // datas[i].num = i + 1;
+                    td1.innerHTML=datas[i].num;
+                    td1.className="num";
+                    var td2 = document.createElement("td");
+                    tr.appendChild(td2);
+                    td2.textContent=datas[i].name;
+                    td2.className="name"
+                    var td3 = document.createElement("td");
+                    tr.appendChild(td3);
+                    td3.textContent=datas[i].role;
+                    td3.className="role"
+                    var td4 = document.createElement("td");
+                    tr.appendChild(td4);
+                    dataName = datas[i].name;
+                    var index = this.rowIndex + 1;
+                    td4.innerHTML="<a href='javascript:;' onclick= selectUser(this);>授权</a>";
+                    td4.className="date"
+                    var td=document.createElement("td");
+                    tr.appendChild(td);
+                    td.innerHTML="<a href='javascript:;' onclick= alert(td1.innerText);tbody.removeChild(this.parentNode.parentNode);>删除</a>";
+                }
+            },
+            error:function()
+            {
+
+            }
+        })
+    }
+
+    // 从数据库读数据，更新datas,
+
+    // initTable();
+
+    //初始化数据
+    // function initTable()
+    // {
+    //     //发送请求，后端查询数据库信息
+    //     $.ajax({
+    //         url: "/sear_userInit",
+    //         type: "post",
+    //         dataType: "json",
+    //         data: {
+    //         },
+    //         success: function (data) {
+    //             // alert(data);
+    //             var json = JSON.stringify(data);
+    //             var jsonText = JSON.parse(json);
+    //             alert("seccess!" + jsonText.user_name);
+    //             var partName = jsonText.user_name.split(",");
+    //             var partPermission = jsonText.user_permission.split(",");
+    //
+    //             //获取数据之后，根据获取到的rolename更新下拉框
+    //             var selectList = document.getElementById("role");
+    //
+    //             // alert(partName[1]);
+    //             alert("请求发送成功")
+    //             // alert(partName.length);
+    //             // alert(partPermission.length);
+    //             //初始化datas
+    //             for( i = 0;i < partName.length;i++)
+    //             {
+    //                 datas[i] = {
+    //                     num: i + 1,
+    //                     name: partName[i],
+    //                     role: partPermission[i],
+    //                     sq: "授权"
+    //                 }
+    //                 alert(datas[i].name);
+    //             }
+    //             // 2,往tbody里面创建行，有几个人（通过数组的长度）我们就创建几行,建表时自增number
+    //             var tbody=document.querySelector("tbody");
+    //             for(var i=0;i<datas.length;i++)  //外面的for循环 是 行tr
+    //             {
+    //                 var dataName;
+    //                 var tr=document.createElement("tr");
+    //                 tbody.appendChild(tr);
+    //                 //3,往tr每一行里面创建单元格（跟数据有关系的3个单元格），td单元格的数量取决于每个对象的属性个数 for循环遍历对象 datas[i]
+    //                 // for(var k in datas[i])   //里面的for循环是 列
+    //                 // {
+    //                 //     var td=document.createElement("td");  //创建单元格
+    //                 //     tr.appendChild(td);
+    //                 //     td.innerHTML=datas[i][k];  //把对象里面的属性值 datas[i][k]给td
+    //                 // }
+    //                 var td1 = document.createElement("td");
+    //                 tr.appendChild(td1);
+    //                 datas[i].num = i + 1;
+    //                 td1.innerHTML=datas[i].num;
+    //                 td1.className="num";
+    //                 var td2 = document.createElement("td");
+    //                 tr.appendChild(td2);
+    //                 td2.textContent=datas[i].name;
+    //                 td2.className="name"
+    //                 var td3 = document.createElement("td");
+    //                 tr.appendChild(td3);
+    //                 td3.textContent=datas[i].role;
+    //                 td3.className="role"
+    //                 var td4 = document.createElement("td");
+    //                 tr.appendChild(td4);
+    //                 dataName = datas[i].name;
+    //                 var index = this.rowIndex + 1;
+    //                 td4.innerHTML="<a href='javascript:;' onclick= selectUser(this);>授权</a>";
+    //                 td4.className="date"
+    //                 var td=document.createElement("td");
+    //                 tr.appendChild(td);
+    //                 td.innerHTML="<a href='javascript:;' onclick= alert(td1.innerText);tbody.removeChild(this.parentNode.parentNode);>删除</a>";
+    //             }
+    //         },
+    //         error: function () {
+    //             alert("请求发送失败!");
+    //         }
+    //     })
+    // }
+    //分页
+    function goPage(pno,psize){
+        var itable = document.getElementById("idData");
+        var num = itable.rows.length;//表格所有行数(所有记录数)
+        //console.log(num);
+        var totalPage = 0;//总页数
+        var pageSize = psize;//每页显示行数
+        //总共分几页
+        if(num/pageSize > parseInt(num/pageSize)){
+            totalPage=parseInt(num/pageSize)+1;
+        }else{
+            totalPage=parseInt(num/pageSize);
+        }
+        var currentPage = pno;//当前页数
+        var startRow = (currentPage - 1) * pageSize+1;//开始显示的行  31
+        var endRow = currentPage * pageSize;//结束显示的行   40
+        endRow = (endRow > num)? num : endRow;    //40
+        // console.log(endRow);
+        //遍历显示数据实现分页
+        for(var i=1;i<(num+1);i++){
+            var irow = itable.rows[i-1];
+            if(i>=startRow && i<=endRow){
+                irow.style.display = "table-row";
+                //irow.cells.style.width = "11%";
+            }else{
+                irow.style.display = "none";
+                //irow.cells.style.width = "11%";
+            }
+        }
+        //var pageEnd = document.getElementById("pageEnd");
+        var tempStr = "共"+num+"条数据 分"+totalPage+"页 当前第"+currentPage+"页&nbsp;&nbsp;";
+        if(currentPage>1){
+            tempStr += "<a href=\"#\" class=\"btn btn-sm btn-primary\" onClick=\"goPage("+(1)+","+psize+")\">首页</a>&nbsp;&nbsp;";
+            tempStr += "<a href=\"#\" class=\"btn btn-sm btn-primary\" onClick=\"goPage("+(currentPage-1)+","+psize+")\">上一页</a>&nbsp;&nbsp;"
+        }else{
+            tempStr += "<a href=\"#\" class=\"btn btn-sm btn-metal\" >首页</a>&nbsp;&nbsp;";
+            tempStr += "<a href=\"#\" class=\"btn btn-sm btn-metal\" >上一页</a>&nbsp;&nbsp;";
+        }
+
+        if(currentPage<totalPage){
+            tempStr += "<a href=\"#\" class=\"btn btn-sm btn-primary\" onClick=\"goPage("+(currentPage+1)+","+psize+")\">下一页</a>&nbsp;&nbsp;";
+            tempStr += "<a href=\"#\" class=\"btn btn-sm btn-primary\" onClick=\"goPage("+(totalPage)+","+psize+")\">尾页</a>&nbsp;&nbsp;";
+        }else{
+            tempStr += "<a href=\"#\" class=\"btn btn-sm btn-metal\" >下一页</a>&nbsp;&nbsp;";
+            tempStr += "<a href=\"#\" class=\"btn btn-sm btn-metal\" >尾页</a>&nbsp;&nbsp;";
+        }
+        // tempStr +="跳转至";
+        // tempStr +="<select class='' style='width:60px' οnchange='goPage(this.value,"+psize+")'>";
+        // tempStr +="<option></option>"
+        // for(var j=1;j<=totalPage;j++){
+        //     tempStr +="<option  value='"+j+"' >第"+ j +"页</option>";
+        // }
+        tempStr +="</select>";
+        document.getElementById("barcon").innerHTML = tempStr;
+    }
+</script>
+<script type="text/javascript" language="javascript">
+    window.onload = function() {  //页面加载完之后执行
+        goPage(1, 10);  //1为当前页数，10为每页显示行数
+    };
+</script>
+</html>
+
+

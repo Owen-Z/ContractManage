@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>新增角色</title>
+
+    <link rel="stylesheet" th:href="@{/css/addRole.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/left-side-menu.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/font/iconfont.css}">
+    <script type="text/javascript" src="/static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" src="/static/js/jquery.slimscroll.min.js" th:src="@{/js/jquery.slimscroll.min.js}"></script>
+    <script type="text/javascript" src="/static/js/left-side-menu.js" th:src="@{/js/left-side-menu.js}"></script>
+
+</head>
+<body>
+<div class ="top">
+    <span class="tt">合同管理系统</span>
+    <span class="tt2">新增角色</span>
+    <span class="user_name">用户名</span>
+    <input class="back" type="button" value="退出" style="width: 50px; height: 50px; border-radius: 50%;border: none">
+</div>
+<div class="left-side-menu" style="top:80px ;position: fixed">
+    <div class="lsm-expand-btn">
+        <div class="lsm-mini-btn">
+            <label>
+                <input type="checkbox" checked="checked">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="30" />
+                    <path class="line--1" d="M0 40h62c18 0 18-20-17 5L31 55" />
+                    <path class="line--2" d="M0 50h80" />
+                    <path class="line--3" d="M0 60h62c18 0 18 20-17-5L31 45" />
+                </svg>
+            </label>
+        </div>
+    </div>
+    <div class="lsm-container">
+        <div class="lsm-scroll" >
+            <div class="lsm-sidebar">
+                <ul>
+                    <li class="lsm-sidebar-item">
+                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_2"></i><span>主页面</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <ul>
+                            <li><a th:href="@{/index}"><span>首页</span></a></li>
+                            <li><a th:href="@{/login}"><span>退出</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="lsm-sidebar-item">
+                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_3"></i><span>合同管理</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <ul>
+                            <li><a th:href="@{/draft}"><span>起草合同</span></a></li>
+                            <li><a th:href="@{/sign}"><span>会签合同</span></a></li>
+                            <li><a th:href="@{/finalize}"><span>定稿合同</span></a></li>
+                            <li><a th:href="@{/approve}"><span>审批合同</span></a></li>
+                            <li><a th:href="@{/finish}"><span>签订合同</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="lsm-sidebar-item">
+                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_3"></i><span>查询统计</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <ul>
+                            <li><a th:href="@{/search_contract}"><span>合同信息查询</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="lsm-sidebar-item">
+                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_3"></i><span>基础数据管理</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <ul>
+                            <li><a th:href="@{/addCustomer}"><span>新增客户</span></a></li>
+                            <li><a th:href="@{/sear_account}"><span>查询客户</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="lsm-sidebar-item">
+                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_1"></i><span>系统管理</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <ul>
+                            <li><a th:href="@{/authorize/getAll}"><span>分配合同</span></a></li>
+                            <li><a th:href="@{/addUser}"><span>增加用户</span></a></li>
+                            <li><a th:href="@{/search}"><span>用户管理</span></a></li>
+                            <li><a th:href="@{/addRole}"><span>角色管理</span></a></li>
+                            <li><a th:href="@{/search_log}"><span>日志管理</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="right-main">
+    <div style="border-width: 1px; border-color: #008000; width:90%;" class="info"><!--legend(中文意思为传说 铭文）指在 fieldSet 对象绘制的方框内插入一个标题。-->
+        <!-- form是指表单，也可以理解成一块区域  action属性指将表单提交的地址 method属性指提交方式 现在流行的为post以及get（post更为保密）-->
+
+        <form th:action="@{addRole/add}" method="post"><!--table指创建一个表单 cellpadding指单元格内文字与边框的距离 align指使排成一条线 center指按照中线对其-->
+            <table  cellpadding="2" align="center" class="tb">
+                <tr><!--tr指定义表中的行，必须在table中使用-->
+                    <td align="right">角色名称：</td><!--td指表单中的一个单元格，必须在table中使用-->
+                    <td>
+                        <!--1.文本输入框 text(中文为文本)-->
+                        <input style="width:450px; height:30px;" class="username" type="text" id="name"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">角色描述：</td>
+                    <!--2.密码输入框控件-->
+                    <td><input  style="width:450px; height:30px;" type="input" id="del" /></td>
+                </tr>
+                <tr>
+                    <td align="right">权限配置：</td>
+                    <td style="width:500px; height:400px;">
+                        <table  cellpadding="2" align="center" class="tb2">
+                            <tr><!--tr指定义表中的行，必须在table中使用-->
+                                <td style="width:500px; height:10px; font-size: x-large" align="left">合同管理：</td><!--td指表单中的一个单元格，必须在table中使用-->
+                            </tr>
+                            <tr>
+                                <td style="width:500px; height:10px; font-size: large">
+                                    <!--4.复选框控件--><!--check box中文意为复选、多选-->
+                                    <input type="checkbox" name="interest" value="0"/> 起草合同
+                                    <input type="checkbox" name="interest" value="1"/> 定稿合同
+                                    <input type="checkbox" name="interest" value="2"/> 查询合同
+                                    <input type="checkbox" name="interest" value="3"/> 删除合同
+                                </td>
+                            </tr>
+                            <tr><!--tr指定义表中的行，必须在table中使用-->
+                                <td style="width:500px; height:10px; font-size: x-large" align="left">流程管理：</td><!--td指表单中的一个单元格，必须在table中使用-->
+                            </tr>
+                            <tr>
+                                <td style="width:500px; height:10px; font-size: large">
+                                    <!--4.复选框控件--><!--check box中文意为复选、多选-->
+                                    <input type="checkbox" name="interest" value="4"/> 会签合同
+                                    <input type="checkbox" name="interest" value="5"/> 审批合同
+                                    <input type="checkbox" name="interest" value="6"/> 签订合同
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:500px; height:10px; font-size: large">
+                                    <!--4.复选框控件--><!--check box中文意为复选、多选-->
+                                    <input type="checkbox" name="interest" value="7"/> 分配会签
+                                    <input type="checkbox" name="interest" value="8"/> 分配审批
+                                    <input type="checkbox" name="interest" value="9"/> 分配签订
+                                    <input type="checkbox" name="interest" value="10"/> 流程查询
+                                </td>
+                            </tr>
+                            <tr><!--tr指定义表中的行，必须在table中使用-->
+                                <td style="width:500px; height:10px; font-size: x-large" align="left">用户管理：</td><!--td指表单中的一个单元格，必须在table中使用-->
+                            </tr>
+                            <tr>
+                                <td style="width:500px; height:10px; font-size: large">
+                                    <!--4.复选框控件--><!--check box中文意为复选、多选-->
+                                    <input type="checkbox" name="interest" value="11"/> 新增用户
+                                    <input type="checkbox" name="interest" value="12"/> 编辑用户
+                                    <input type="checkbox" name="interest" value="13"/> 查询用户
+                                    <input type="checkbox" name="interest" value="15"/> 删除用户
+                                </td>
+                            </tr>
+                            <tr><!--tr指定义表中的行，必须在table中使用-->
+                                <td style="width:500px; height:10px; font-size: x-large" align="left">角色管理：</td><!--td指表单中的一个单元格，必须在table中使用-->
+                            </tr>
+                            <tr>
+                                <td style="width:500px; height:10px; font-size: large">
+                                    <!--4.复选框控件--><!--check box中文意为复选、多选-->
+                                    <input type="checkbox" name="interest" value="15"/> 新增角色
+                                    <input type="checkbox" name="interest" value="16"/> 编辑角色
+                                    <input type="checkbox" name="interest" value="17"/> 查询角色
+                                    <input type="checkbox" name="interest" value="18"/> 删除角色
+                                </td>
+                            </tr>
+                            <tr><!--tr指定义表中的行，必须在table中使用-->
+                                <td style="width:500px; height:10px; font-size: x-large" align="left">功能操作：</td><!--td指表单中的一个单元格，必须在table中使用-->
+                            </tr>
+                            <tr>
+                                <td style="width:500px; height:10px; font-size: large">
+                                    <!--4.复选框控件--><!--check box中文意为复选、多选-->
+                                    <input type="checkbox" name="interest" value="19"/> 新增功能
+                                    <input type="checkbox" name="interest" value="20"/> 编辑功能
+                                    <input type="checkbox" name="interest" value="21"/> 查询功能
+                                    <input type="checkbox" name="interest" value="22"/> 删除功能
+                                </td>
+                            </tr>
+                            <tr><!--tr指定义表中的行，必须在table中使用-->
+                                <td style="width:500px; height:10px; font-size: x-large" align="left">权限管理：</td><!--td指表单中的一个单元格，必须在table中使用-->
+                            </tr>
+                            <tr>
+                                <td style="width:500px; height:10px; font-size: large">
+                                    <!--4.复选框控件--><!--check box中文意为复选、多选-->
+                                    <input type="checkbox" name="interest" value="23"/> 配置权限
+                                </td>
+                            </tr>
+                            <tr><!--tr指定义表中的行，必须在table中使用-->
+                                <td style="width:500px; height:10px; font-size: x-large" align="left">客户管理：</td><!--td指表单中的一个单元格，必须在table中使用-->
+                            </tr>
+                            <tr>
+                                <td style="width:500px; height:20px; font-size: large">
+                                    <!--4.复选框控件--><!--check box中文意为复选、多选-->
+                                    <input type="checkbox" name="interest" value="24"/> 新增客户
+                                    <input type="checkbox" name="interest" value="25"/> 编辑客户
+                                    <input type="checkbox" name="interest" value="26"/> 查询客户
+                                    <input type="checkbox" name="interest" value="27"/> 删除客户
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <!--6.提交按钮控件  submit中文为提交-->
+                        <input type="button" id="btn" value="增加" style="width: 90px; height: 30px; font-size: 20px"/>
+                        <!--7.重置按钮控件  reset中文为重置-->
+                        <input type="reset" value="重置" style="width: 90px; height: 30px; font-size: 20px"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script>
+        $("#btn").click(function(){
+            var str = "";
+            $("input[name='interest']").each(function(){
+                if($(this).is(":checked"))
+                {
+                    str +=  $(this).val()+",";
+                }
+            });
+            $.ajax({
+                url:"/addRole/add",
+                type:"post",
+                dataType:"json",
+                data:{
+                    "name":$("#name").val(),
+                    "id":$("#id").val(),
+                    "functions":str
+                },
+                success:function(data)
+                {
+                    console.log(data);
+                    if(data == 1){
+                        alert("增加成功");
+                    }else if(data == 2){
+                        alert("增加失败");
+                    }else {
+                        alert("增加失败");
+                    }
+                },
+                error:function()
+                {
+                    alert("增加失败");
+                }
+            })
+        });
+    </script>
+
+</div>
+
+</body>
+</html>
+
+

@@ -1,0 +1,63 @@
+.pure-table{
+    width: 75%;
+    margin-top: 3%;
+    margin-left: 10%;
+    font-size: 5px;
+}
+
+.page{
+    margin-left: -153px;
+}
+
+.right-main::-webkit-scrollbar{
+    display: none;
+}
+
+
+.right-main{
+    position: absolute;
+    top: 80px;
+    left: 220px;
+    width: calc(100% - 220px);
+    /*height: calc(100% - 90px);*/
+    overflow: auto;
+}
+.top {
+    position: fixed;
+    background-color: #3b3e47;
+    width: 100%;
+    height: 80px;
+    z-index: 2;
+}
+
+.tt {
+    position: relative;
+    top: 15px;
+    left: 3%;
+    font-size: 35px;
+    color: #e2e7ec;
+}
+
+.tt2 {
+    position: relative;
+    top: 15px;
+    left: 35%;
+    font-size: 28px;
+    color: #e2e7ec;
+}
+
+.user_name {
+    position: relative;
+    top: 15px;
+    left: 65%;
+    font-size: 30px;
+    color: #e2e7ec;
+}
+
+.back {
+    position: relative;
+    top: 13px;
+    left: 70%;
+    font-size: 20px;
+    background-color: white;
+}

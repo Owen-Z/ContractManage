@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>流程配置</title>
+
+    <link rel="stylesheet" th:href="@{/css/authorize.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/left-side-menu.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/font/iconfont.css}">
+    <script type="text/javascript" src="/static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" src="/static/js/jquery.slimscroll.min.js" th:src="@{/js/jquery.slimscroll.min.js}"></script>
+    <script type="text/javascript" src="/static/js/left-side-menu.js" th:src="@{/js/left-side-menu.js}"></script>
+
+    <style type="text/css">
+        #container{margin: 10px 0px 0px;}
+        select{width:100px;}
+        input[type="button"][title^="移动"]{width:50px;margin:0px 0px 3px;}/*只匹配type="button" 前缀有移动的按钮，后缀匹配为$*/
+        #box{display:block;float:left;}
+        #box1{display:block;float:left;}
+        #control{width:52px;float:left;margin:0px 2px;}
+        #container2{margin: 10px 0px 0px;}
+        #box2{display:block;float:left;}
+        #box12{display:block;float:left;}
+        #control2{width:52px;float:left;margin:0px 2px;}
+        #container3{margin: 10px 0px 0px;}
+        #box3{display:block;float:left;}
+        #box13{display:block;float:left;}
+        #control3{width:52px;float:left;margin:0px 2px;}
+    </style>
+    <script type="text/javascript" language="javascript">
+        window.onload=function(){
+            var oBtnOne = document.getElementById("btn_one");
+            var oBtnOne1 = document.getElementById("btn_one1");
+            var oBtnSelected = document.getElementById("btn_selected");
+            var oBtnSelected1 = document.getElementById("btn_selected1");
+            var oBtnAll = document.getElementById("btn_all");
+            var oBtnAll1 = document.getElementById("btn_all1");
+            var oBox = document.getElementById("box");
+            var oBox1 = document.getElementById("box1");
+            //列表元素操作
+
+            //向左列移动所有元素
+            oBtnAll.onclick=function(){
+                var aOption = oBox.getElementsByTagName("option");
+                for(var i = aOption.length-1;i>=0;i--){
+                    oBox1.appendChild(aOption[i]);
+                    //Box.removeChild(aOption[i]);
+                    //不需要再移除oBox=的元素
+                }
+            }
+            //向右列移动所有元素
+            oBtnAll1.onclick=function(){
+                var aOption = oBox1.getElementsByTagName("option");
+                for(var i = aOption.length-1;i>=0;i--){
+                    oBox.appendChild(aOption[i]);
+                }
+            }
+            //向右列移动一个元素
+            oBtnOne.onclick=function(){
+                var aOption = oBox.getElementsByTagName("option");
+                for(var i = aOption.length-1;i>=0;i--){
+                    if(aOption[i].selected){
+                        oBox1.appendChild(aOption[i]);
+                        break;//移动一个后跳出循环
+                    }
+                }
+            }
+            //向左列移动一个元素
+            oBtnOne1.onclick=function(){
+                var aOption = oBox1.getElementsByTagName("option");
+                for(var i = aOption.length-1;i>=0;i--){
+                    if(aOption[i].selected){
+                        oBox.appendChild(aOption[i]);
+                        break;
+                    }
+                }
+            }
+            //向右列移动所有选中元素
+            oBtnSelected.onclick=function(){
+                var aOption = oBox.getElementsByTagName("option");
+                for(var i = aOption.length-1;i>=0;i--){
+                    if(aOption[i].selected){
+                        oBox1.appendChild(aOption[i]);
+                    }
+                }
+            }
+            //向左列移动所有选中元素
+            oBtnSelected1.onclick=function(){
+                var aOption = oBox1.getElementsByTagName("option");
+                for(var i = aOption.length-1;i>=0;i--){
+                    if(aOption[i].selected){
+                        oBox.appendChild(aOption[i]);
+                    }
+                }
+            }
+
+            var oBtnOne2 = document.getElementById("btn_one2");
+            var oBtnOne12 = document.getElementById("btn_one12");
+            var oBtnSelected2 = document.getElementById("btn_selected2");
+            var oBtnSelected12 = document.getElementById("btn_selected12");
+            var oBtnAll2 = document.getElementById("btn_all2");
+            var oBtnAll12 = document.getElementById("btn_all12");
+            var oBox2 = document.getElementById("box2");
+            var oBox12 = document.getElementById("box12");
+            //列表元素操作
+
+            //向左列移动所有元素
+            oBtnAll2.onclick=function(){
+                var aOption = oBox2.getElementsByTagName("option");
+                for(var i = aOption.length-1;i>=0;i--){
+                    oBox12.appendChild(aOption[i]);
+                    //Box.removeChild(aOption[i]);
+                    //不需要再移除oBox=的元素
+                }
+            }
+            //向右列移动所有元素
+            oBtnAll12.onclick=function(){
+                var aOption = oBox12.getElementsByTagName("option");
+                for(var i = aOption.length-1;i>=0;i--){
+                    oBox2.appendChild(aOption[i]);
+                }
+            }
+            //向右列移动一个元素
+            oBtnOne2.onclick=function(){
+                var aOption = oBox2.getElementsByTagName("option");
+                for(var i = aOption.length-1;i>=0;i--){
+                    if(aOption[i].selected){
+                        oBox12.appendChild(aOption[i]);
+                        break;//移动一个后跳出循环
+                    }
+                }
+            }
+            //向左列移动一个元素
+            oBtnOne12.onclick=function(){
+                var aOption = oBox12.getElementsByTagName("option");
+                for(var i = aOption.length-1;i>=0;i--){
+                    if(aOption[i].selected){
+                        oBox2.appendChild(aOption[i]);
+                        break;
+                    }
+                }
+            }
+            //向右列移动所有选中元素
+            oBtnSelected2.onclick=function(){
+                var aOption = oBox2.getElementsByTagName("option");
+                for(var i = aOption.length-1;i>=0;i--){
+                    if(aOption[i].selected){
+                        oBox12.appendChild(aOption[i]);
+                    }
+                }
+            }
+            //向左列移动所有选中元素
+            oBtnSelected12.onclick=function(){
+                var aOption = oBox12.getElementsByTagName("option");
+                for(var i = aOption.length-1;i>=0;i--){
+                    if(aOption[i].selected){
+                        oBox2.appendChild(aOption[i]);
+                    }
+                }
+            }
+
+            var oBtnOne3 = document.getElementById("btn_one3");
+            var oBtnOne13 = document.getElementById("btn_one13");
+            var oBtnSelected3 = document.getElementById("btn_selected3");
+            var oBtnSelected13 = document.getElementById("btn_selected13");
+            var oBtnAll3 = document.getElementById("btn_all3");
+            var oBtnAll13 = document.getElementById("btn_all13");
+            var oBox3 = document.getElementById("box3");
+            var oBox13 = document.getElementById("box13");
+            //列表元素操作
+
+            //向左列移动所有元素
+            oBtnAll3.onclick=function(){
+                var aOption = oBox3.getElementsByTagName("option");
+                for(var i = aOption.length-1;i>=0;i--){
+                    oBox13.appendChild(aOption[i]);
+                    //Box.removeChild(aOption[i]);
+                    //不需要再移除oBox=的元素
+                }
+            }
+            //向右列移动所有元素
+            oBtnAll13.onclick=function(){
+                var aOption = oBox13.getElementsByTagName("option");
+                for(var i = aOption.length-1;i>=0;i--){
+                    oBox3.appendChild(aOption[i]);
+                }
+            }
+            //向右列移动一个元素
+            oBtnOne3.onclick=function(){
+                var aOption = oBox3.getElementsByTagName("option");
+                for(var i = aOption.length-1;i>=0;i--){
+                    if(aOption[i].selected){
+                        oBox13.appendChild(aOption[i]);
+                        break;//移动一个后跳出循环
+                    }
+                }
+            }
+            //向左列移动一个元素
+            oBtnOne13.onclick=function(){
+                var aOption = oBox13.getElementsByTagName("option");
+                for(var i = aOption.length-1;i>=0;i--){
+                    if(aOption[i].selected){
+                        oBox3.appendChild(aOption[i]);
+                        break;
+                    }
+                }
+            }
+            //向右列移动所有选中元素
+            oBtnSelected3.onclick=function(){
+                var aOption = oBox3.getElementsByTagName("option");
+                for(var i = aOption.length-1;i>=0;i--){
+                    if(aOption[i].selected){
+                        oBox13.appendChild(aOption[i]);
+                    }
+                }
+            }
+            //向左列移动所有选中元素
+            oBtnSelected13.onclick=function(){
+                var aOption = oBox13.getElementsByTagName("option");
+                for(var i = aOption.length-1;i>=0;i--){
+                    if(aOption[i].selected){
+                        oBox3.appendChild(aOption[i]);
+                    }
+                }
+            }
+
+        }
+    </script>
+
+</head>
+<body>
+<div class ="top">
+    <span class="tt">合同管理系统</span>
+    <span class="tt2">流程配置</span>
+    <span class="user_name">用户名</span>
+    <input class="back" type="button" value="退出" style="width: 50px; height: 50px; border-radius: 50%;border: none">
+</div>
+<div class="left-side-menu" style="top:80px ;position: fixed">
+    <div class="lsm-expand-btn">
+        <div class="lsm-mini-btn">
+            <label>
+                <input type="checkbox" checked="checked">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="30" />
+                    <path class="line--1" d="M0 40h62c18 0 18-20-17 5L31 55" />
+                    <path class="line--2" d="M0 50h80" />
+                    <path class="line--3" d="M0 60h62c18 0 18 20-17-5L31 45" />
+                </svg>
+            </label>
+        </div>
+    </div>
+    <div class="lsm-container">
+        <div class="lsm-scroll" >
+            <div class="lsm-sidebar">
+                <ul>
+                    <li class="lsm-sidebar-item">
+                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_2"></i><span>主页面</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <ul>
+                            <li><a th:href="@{/index}"><span>首页</span></a></li>
+                            <li><a th:href="@{/login}"><span>退出</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="lsm-sidebar-item">
+                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_3"></i><span>合同管理</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <ul>
+                            <li><a th:href="@{/draft}"><span>起草合同</span></a></li>
+                            <li><a th:href="@{/sign}"><span>会签合同</span></a></li>
+                            <li><a th:href="@{/finalize}"><span>定稿合同</span></a></li>
+                            <li><a th:href="@{/approve}"><span>审批合同</span></a></li>
+                            <li><a th:href="@{/finish}"><span>签订合同</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="lsm-sidebar-item">
+                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_3"></i><span>查询统计</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <ul>
+                            <li><a th:href="@{/search_contract}"><span>合同信息查询</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="lsm-sidebar-item">
+                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_3"></i><span>基础数据管理</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <ul>
+                            <li><a th:href="@{/addCustomer}"><span>新增客户</span></a></li>
+                            <li><a th:href="@{/sear_account}"><span>查询客户</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="lsm-sidebar-item">
+                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_1"></i><span>系统管理</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <ul>
+                            <li><a th:href="@{/authorize/getAll}"><span>分配合同</span></a></li>
+                            <li><a th:href="@{/addUser}"><span>增加用户</span></a></li>
+                            <li><a th:href="@{/search}"><span>用户管理</span></a></li>
+                            <li><a th:href="@{/addRole}"><span>角色管理</span></a></li>
+                            <li><a th:href="@{/search_log}"><span>日志管理</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="right-main">
+    <fieldset style="border-width: 1px; border-color: #008000; width:75%;" class="firstop"><!--legend(中文意思为传说 铭文）指在 fieldSet 对象绘制的方框内插入一个标题。-->
+        <legend>分配会签人</legend>
+        <div id="container">
+            <select id="box" multiple="multiple" size="13" style="font-size: 15px">
+                <option th:each="user0:${users0}" th:text="${user0.getName()}" th:value="${user0.getName()}"></option>
+            </select>
+            <div id="control">
+                <input type="button" id="btn_one" value=">" title="移动一个选中到右侧" /><br />
+                <input type="button" id="btn_selected" value=">>" title="移动所有选中到右侧" /><br />
+                <input type="button" id="btn_all" value=">>>" title="移动所有到右侧" /><br />
+                <input type="button" id="btn_one1" value="<" title="移动一个选中到左侧" /><br />
+                <input type="button" id="btn_selected1" value="<<" title="移动所有选中到左侧" /><br />
+                <input type="button" id="btn_all1" value="<<<" title="移动所有到左侧" /><br />
+            </div>
+            <input class="confirm1" id="con1" type="button" value="确定" >
+            <select id="box1" multiple="multiple" size="13" style="font-size: 15px">
+            </select>
+        </div>
+    </fieldset>
+    <script>
+        $("#con1").on("click",function (){
+            $.ajax({
+                url:"/authorize/add0",
+                type:"post",
+                dataType:"json",
+                data:{
+                    "user0":String($("#box1").val())
+                },
+                success:function(data)
+                {
+                    console.log(data);
+                    if(data == 1){
+                        alert("增加成功");
+                    }else {
+                        alert("增加失败");
+                    }
+                },
+                error:function()
+                {
+                    alert("增加失败");
+                }
+            })
+        })
+    </script>
+
+    <fieldset style="border-width: 1px; border-color: #008000; width:75%;" class="second"><!--legend(中文意思为传说 铭文）指在 fieldSet 对象绘制的方框内插入一个标题。-->
+        <legend>分配审批人</legend>
+        <div id="container2">
+            <select id="box2" multiple="multiple" size="13" style="font-size: 15px">
+                <option th:each="user1:${users1}" th:text="${user1.getName()}" th:value="${user1.getName()}"></option>
+            </select>
+            <div id="control2">
+                <input type="button" id="btn_one2" value=">" title="移动一个选中到右侧" /><br />
+                <input type="button" id="btn_selected2" value=">>" title="移动所有选中到右侧" /><br />
+                <input type="button" id="btn_all2" value=">>>" title="移动所有到右侧" /><br />
+                <input type="button" id="btn_one12" value="<" title="移动一个选中到左侧" /><br />
+                <input type="button" id="btn_selected12" value="<<" title="移动所有选中到左侧" /><br />
+                <input type="button" id="btn_all12" value="<<<" title="移动所有到左侧" /><br />
+            </div>
+            <input id="con2" class="confirm2" type="button" value="确定" >
+            <select id="box12" multiple="multiple" size="13" style="font-size: 15px">
+            </select>
+        </div>
+    </fieldset>
+    <script>
+        $("#con2").on("click",function (){
+            $.ajax({
+                url:"/authorize/add1",
+                type:"post",
+                dataType:"json",
+                data:{
+                    "user1":String($("#box12").val())
+                },
+                success:function(data)
+                {
+                    console.log(data);
+                    if(data == 1){
+                        alert("增加成功");
+                    }else {
+                        alert("增加失败");
+                    }
+                },
+                error:function()
+                {
+                    alert("增加失败");
+                }
+            })
+        })
+    </script>
+
+    <fieldset style="border-width: 1px; border-color: #008000; width:75%;" class="third"><!--legend(中文意思为传说 铭文）指在 fieldSet 对象绘制的方框内插入一个标题。-->
+        <legend>分配签订人</legend>
+        <div id="container3">
+            <select id="box3" multiple="multiple" size="13" style="font-size: 15px">
+                <option th:each="user2:${users2}" th:text="${user2.getName()}" th:value="${user2.getName()}"></option>
+            </select>
+            <div id="control3">
+                <input type="button" id="btn_one3" value=">" title="移动一个选中到右侧" /><br />
+                <input type="button" id="btn_selected3" value=">>" title="移动所有选中到右侧" /><br />
+                <input type="button" id="btn_all3" value=">>>" title="移动所有到右侧" /><br />
+                <input type="button" id="btn_one13" value="<" title="移动一个选中到左侧" /><br />
+                <input type="button" id="btn_selected13" value="<<" title="移动所有选中到左侧" /><br />
+                <input type="button" id="btn_all13" value="<<<" title="移动所有到左侧" /><br />
+            </div>
+            <input id="con3" class="confirm3" type="button" value="确定" >
+            <select id="box13" multiple="multiple" size="13" style="font-size: 15px">
+            </select>
+        </div>
+    </fieldset>
+    <script>
+        $("#con3").on("click",function (){
+            $.ajax({
+                url:"/authorize/add2",
+                type:"post",
+                dataType:"json",
+                data:{
+                    "user2":String($("#box13").val())
+                },
+                success:function(data)
+                {
+                    console.log(data);
+                    if(data == 1){
+                        alert("增加成功");
+                    }else {
+                        alert("增加失败");
+                    }
+                },
+                error:function()
+                {
+                    alert("增加失败");
+                }
+            })
+        })
+    </script>
+    <br>
+<!--    <input class="confirm" type="button" value="确定" style="width: 50px; height: 50px; border-radius: 50%;border: none">-->
+</div>
+</body>
+</html>
+
+

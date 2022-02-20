@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>合同会签</title>
+
+    <link rel="stylesheet" th:href="@{/css/search_process.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/left-side-menu.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/font/iconfont.css}">
+    <link rel="stylesheet" th:href="@{/css/add_account.css}">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+
+
+    <script type="text/javascript" src="/static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.slimscroll.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/left-side-menu.js}"></script>
+    <script th:src="@{/layui/layui.js}"></script>
+</head>
+<body>
+<div class="top">
+    <span class="tt">合同管理系统</span>
+    <span class="tt2">合同会签</span>
+    <span class="user_name">用户名</span>
+    <input class="back" type="button" value="退出" style="width: 50px; height: 50px; border-radius: 50%;border: none">
+</div>
+<div class="left-side-menu" style="top:80px ;position: fixed">
+    <div class="lsm-expand-btn">
+        <div class="lsm-mini-btn">
+            <label>
+                <input type="checkbox" checked="checked">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="30" />
+                    <path class="line--1" d="M0 40h62c18 0 18-20-17 5L31 55" />
+                    <path class="line--2" d="M0 50h80" />
+                    <path class="line--3" d="M0 60h62c18 0 18 20-17-5L31 45" />
+                </svg>
+            </label>
+        </div>
+    </div>
+    <div class="lsm-container">
+        <div class="lsm-scroll" >
+            <div class="lsm-sidebar">
+                <ul>
+                    <li class="lsm-sidebar-item">
+                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_2"></i><span>主页面</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <ul>
+                            <li><a th:href="@{/index}"><span>首页</span></a></li>
+                            <li><a th:href="@{/login}"><span>退出</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="lsm-sidebar-item">
+                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_3"></i><span>合同管理</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <ul>
+                            <li><a th:href="@{/draft}"><span>起草合同</span></a></li>
+                            <li><a th:href="@{/sign}"><span>会签合同</span></a></li>
+                            <li><a th:href="@{/finalize}"><span>定稿合同</span></a></li>
+                            <li><a th:href="@{/approve}"><span>审批合同</span></a></li>
+                            <li><a th:href="@{/finish}"><span>签订合同</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="lsm-sidebar-item">
+                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_3"></i><span>查询统计</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <ul>
+                            <li><a th:href="@{/search_contract}"><span>合同信息查询</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="lsm-sidebar-item">
+                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_3"></i><span>基础数据管理</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <ul>
+                            <li><a th:href="@{/addCustomer}"><span>新增客户</span></a></li>
+                            <li><a th:href="@{/sear_account}"><span>查询客户</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="lsm-sidebar-item">
+                        <a href="javascript:;"><i class="my-icon lsm-sidebar-icon icon_1"></i><span>系统管理</span><i class="my-icon lsm-sidebar-more"></i></a>
+                        <ul>
+                            <li><a th:href="@{/authorize/getAll}"><span>分配合同</span></a></li>
+                            <li><a th:href="@{/addUser}"><span>增加用户</span></a></li>
+                            <li><a th:href="@{/search}"><span>用户管理</span></a></li>
+                            <li><a th:href="@{/addRole}"><span>角色管理</span></a></li>
+                            <li><a th:href="@{/search_log}"><span>日志管理</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="right-main" style="left: 0px;">
+    <div style="border-width: 1px; border-color: transparent; width: 90%;height: calc(100% - 60px);" class="info">
+        <form action="#" method="post">
+            <table  cellpadding="2" align="center" class="tb">
+                <tr>
+                    <td align="right" >合同名称</td>
+                    <td>
+                        <input style="width:300px; height:30px;text-align: center" class="contractname" type="text" th:value ="${contract.getName()}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">客户：</td>
+                    <td><input style="width:300px; height:30px;text-align: center" class="customername" type="text" th:value ="${contract.getCustomer()}" /></td>
+                </tr>
+
+            </table>
+        </form>
+        <br><br>
+
+        <div>
+            <a align="center" style="padding-left: 620px; padding-top:50px;">合同内容</a> <br>
+            <textarea rows="20" cols="100" style=" margin-left: 300px;" id="contract" th:text ="${contract.getContent()}" ></textarea>
+        </div>
+
+        <form th:action="@{/sign/add}">
+            <div>
+                <a align="center" style="padding-left: 620px; padding-top:50px;">会签意见</a> <br>
+                <textarea name="Sign" rows="20" cols="100" style=" margin-left: 300px;" id="sinformation"></textarea>
+            </div>
+
+            <div>
+                <button id="tijiao" type="submit" style="width:90px;height:30px;right:50px;margin-left: 580px;">提交</button>
+            </div>
+        </form>
+
+
+    </div>
+
+</div>
+
+<script>function reset() {
+    var sum1=0;
+    var t1 = document.getElementsByTagName("textarea");
+    for (var i1=0; i1 <t1.length;i1++){
+        if (t1[i1].type=='textarea'){
+            ++sum1;
+            t1[i1].value="";//清空
+        }
+    }
+}
+</script>
+
+</body>
+</html>

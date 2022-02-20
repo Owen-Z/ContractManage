@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.contractmanagementsystem.mapper.LogMapper">
+
+    <insert id="addLog">
+        insert into log (userName, content, time)
+        values (#{userName},#{content},#{time})
+    </insert>
+
+    <select id="queryLogById" resultType="Log">
+        select * from log where lid = #{lid}
+    </select>
+
+    <select id="getAllLog" resultType="Log">
+        select * from log
+    </select>
+
+    <update id="updateLog">
+        update log
+        set userName = #{userName}, content = #{content}, time = #{time}
+        where lid = #{lid}
+    </update>
+
+    <delete id="deleteLog">
+        delete from log where lid = #{lid}
+    </delete>
+
+</mapper>

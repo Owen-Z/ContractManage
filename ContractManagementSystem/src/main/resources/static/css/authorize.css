@@ -1,0 +1,163 @@
+fieldset {
+    background: rgba(255,255,255,.3);
+    border-color: rgba(255,255,255,.6);
+    border-style: solid;
+    border-width: 2px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    line-height: 30px;
+    list-style: none;
+    padding: 5px 10px;
+    margin-bottom: 2px;
+}
+
+.right-main{
+    position: absolute;
+    top: 80px;
+    left: 220px;
+    width: calc(100% - 220px);
+    height: calc(100% - 90px);
+    overflow: auto;
+    font-size: 20px;
+}
+
+.right-main::-webkit-scrollbar{
+    display: none;
+}
+
+
+.firstop{
+    margin-top: 20px;
+    margin-left: 10%;
+    /*position: relative;*/
+    /*left: 12%;*/
+    /*top: 0;*/
+}
+
+.second{
+    /*position: relative;*/
+    /*left: 12%;*/
+    /*top: 55%*/
+    margin-top: 20px;
+    margin-left: 10%;
+}
+
+.third{
+    /*position: relative;*/
+    /*left: 12%;*/
+    /*top: 66%*/
+    margin-top: 20px;
+    margin-left: 10%;
+}
+
+#container{
+    position: relative;
+    left: 35%;
+}
+
+#container2{
+    position: relative;
+    left: 35%;
+}
+
+#container3{
+    position: relative;
+    left: 35%;
+}
+
+input{
+    background: transparent;
+}
+
+legend {
+    color:#302A2A;
+    font: bold 16px/2 Verdana, Geneva, sans-serif;
+    font-weight: bold;
+    text-align: left;
+    text-shadow: 2px 2px 2px rgb(88, 126, 156);
+}
+
+/*.title{*/
+/*    position: absolute;*/
+/*    left: 10%;*/
+/*}*/
+.top {
+    position: fixed;
+    background-color: #3b3e47;
+    width: 100%;
+    height: 80px;
+    z-index: 2;
+}
+
+.tt {
+    position: relative;
+    top: 15px;
+    left: 3%;
+    font-size: 35px;
+    color: #e2e7ec;
+}
+
+.tt2 {
+    position: relative;
+    top: 15px;
+    left: 35%;
+    font-size: 28px;
+    color: #e2e7ec;
+}
+
+.user_name {
+    position: relative;
+    top: 15px;
+    left: 65%;
+    font-size: 30px;
+    color: #e2e7ec;
+}
+
+.back {
+    position: relative;
+    top: 13px;
+    left: 70%;
+    font-size: 20px;
+    background-color: white;
+}
+
+.confirm3{
+    /*position: fixed;*/
+
+    /*top: 13px;*/
+    /*left: 50%;*/
+    font-size: 20px;
+    /*top: 50%;*/
+    /*left: 92%;*/
+    margin-top: 13%;
+    margin-left: 13%;
+    background-color: white;
+}
+
+.confirm2{
+    /*position: fixed;*/
+
+    /*top: 13px;*/
+    /*left: 50%;*/
+    font-size: 20px;
+    /*top: 50%;*/
+    /*left: 92%;*/
+    margin-top: 13%;
+    margin-left: 13%;
+    background-color: white;
+}
+
+.confirm1{
+    /*position: fixed;*/
+
+    /*top: 13px;*/
+    /*left: 50%;*/
+    font-size: 20px;
+    /*top: 50%;*/
+    /*left: 92%;*/
+    margin-top: 13%;
+    margin-left: 13%;
+    background-color: white;
+}

@@ -1,0 +1,114 @@
+.right-main{
+    /*position: absolute;*/
+    top: 90px;
+    left: 120px;
+    width: 100%;
+    height: calc(100% - 90px);
+    overflow: auto;
+}
+
+.tt{
+    position: relative;
+
+    top: 15px;
+    left: 3%;
+    font-size: 35px;
+}
+
+.tt2{
+    position: relative;
+
+    top: 15px;
+    left: 7%;
+    font-size: 32px;
+}
+
+.user_name{
+    position: relative;
+
+    top: 15px;
+    left: 65%;
+    font-size: 30px;
+}
+
+.back{
+    position: relative;
+
+    top: 13px;
+    left: 70%;
+    font-size: 20px;
+    background-color: white;
+}
+
+.pure-table{
+    /*position: absolute;*/
+    /*top: 18%;*/
+    /*left: 5%;*/
+    width: 70%;
+    margin-top: 50px;
+    margin-left: 10%;
+}
+
+.page{
+    /*position: relative;*/
+    /*top: 90%;*/
+    margin-top: 10px;
+    /*left: -5%;*/
+}
+
+.right-main::-webkit-scrollbar{
+    display: none;
+}
+
+.search-box:hover>.search-txt{
+    width: 100px;
+    padding: 0 6px;
+}
+
+.search-box:hover>.search-btn{
+    background: white;
+}
+
+.search-btn{
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-image: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic.51yuansu.com%2Fpic2%2Fcover%2F00%2F44%2F67%2F5814b81eba16c_610.jpg&refer=http%3A%2F%2Fpic.51yuansu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642091534&t=566662c0cfa950b06ab9d848bfd66a86");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+}
+
+.search-txt{
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: white;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0;
+}
+
+.tables{
+    position: relative;
+    top: 0;
+    left: 7%;
+}
+
+.search-box{
+    position: absolute;
+    top: 14%;
+    left: 93%;
+    transform: translate(-50%,-50%);
+    background: #2f3640;
+    height: 40px;
+    border-radius: 40px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
